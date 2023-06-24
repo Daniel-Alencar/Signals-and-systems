@@ -6,10 +6,15 @@ fig.suptitle('FFT', fontsize=16)
 ax.remove()
 
 # Função x(t)
-t = np.linspace(0, 0.5, 500)
-f_t = np.sin(t * 100)
+amplitudes_f_t = [2, 0.5]
+frequencias_f_t = [1, 10]
 
-plt.subplot(3, 1, 1)
+t = np.linspace(0, 10, 500)
+f_t = amplitudes_f_t[0] * np.cos(frequencias_f_t[0]*2*np.pi*t)
+f_t += amplitudes_f_t[1] * np.cos(frequencias_f_t[1]*2*np.pi*t)
+f_t += np.exp(t * 0.2)
+
+plt.subplot(2, 1, 1)
 plt.xlabel('t')
 plt.ylabel('x(t)')
 plt.plot(t, f_t)
@@ -24,23 +29,11 @@ f = np.fft.fftfreq(len(f_t), T)
 frequencias = f[0 : N // 2]
 amplitudes = np.abs(fft)[0 : N // 2] * 1 / N
 
-plt.subplot(3, 1, 2)
+plt.subplot(2, 1, 2)
 plt.xlabel("Frequência (Hz)")
 plt.ylabel("Amplitude")
 plt.bar(frequencias, amplitudes, width=1.5)
 plt.title('FFT (Fast Fourier Transformation)')
-
-# Espectro:
-# - Eixo x: tempo
-# - Eixo y: frequência
-# - Escala de cores: amplitude
-
-plt.subplot(3, 1, 3)
-plt.ylabel('Frequência (Hz)')
-plt.xlabel('Tempo (s)')
-plt.specgram(f_t, NFFT=N-1, Fs=1/T, scale='linear', scale_by_freq=False)
-plt.colorbar()
-plt.title('Espectro: Tempo, frequência e amplitude')
 
 # Ajustar espaçamento entre subplots
 plt.tight_layout()
