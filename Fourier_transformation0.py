@@ -10,9 +10,7 @@ amplitudes_f_t = [2, 0.5]
 frequencias_f_t = [1, 10]
 
 t = np.linspace(0, 10, 500)
-f_t = amplitudes_f_t[0] * np.cos(frequencias_f_t[0]*2*np.pi*t)
-f_t += amplitudes_f_t[1] * np.cos(frequencias_f_t[1]*2*np.pi*t)
-f_t += np.exp(t * 0.2)
+f_t = 2 * np.cos(1*2*np.pi*t) + 0.5 * np.cos(10*2*np.pi*t) + np.exp(t * 0.2)
 
 plt.subplot(2, 1, 1)
 plt.xlabel('t')

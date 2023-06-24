@@ -1,10 +1,6 @@
 import numpy as np
-import scipy as sp
 import sympy as smp
 import matplotlib.pyplot as plt
-
-from scipy.integrate import quad
-from scipy.integrate import cumulative_trapezoid
 
 # Definindo variáveis e constantes
 from sympy import I
