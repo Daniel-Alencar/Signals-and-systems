@@ -5,6 +5,8 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 import matplotlib.style as style
 
+from Fourier_signal import w_values, X_w_abs, X_w_phase
+from Fourier_signal import abs_function, phase_function
 
 props = [
   {
@@ -76,10 +78,10 @@ def slider_changed(value):
   slider_value = float(value)
   
   # Atualiza os dados do gráfico com base no valor do slider
-  y1 = np.sin(x1 * slider_value)
-  line1.set_ydata(y1)
-  y2 = np.sin(x2 * slider_value)
-  line2.set_ydata(y2)
+  X_w_abs = abs_function(w_values * slider_value)
+  line1.set_ydata(X_w_abs)
+  X_w_phase = phase_function(w_values * slider_value)
+  line2.set_ydata(X_w_phase)
 
   canvas.draw()
 
@@ -106,18 +108,18 @@ fig = Figure(figsize=(6, 6), dpi=100)
 
 # Cria o primeiro subplot
 ax1 = fig.add_subplot(211)
-x1 = np.linspace(0, 2 * np.pi, 500)
-y1 = np.sin(x1)
 
-line1, = ax1.plot(x1, y1)
+line1, = ax1.plot(w_values, X_w_abs, label="Módulo")
+ax1.legend()
+ax1.grid()
 ax1.set_title("Gráfico 1")
 
 # Cria o segundo subplot
 ax2 = fig.add_subplot(212)
-x2 = np.linspace(0, 2 * np.pi, 500)
-y2 = np.cos(x2)
 
-line2, = ax2.plot(x2, y2)
+line2, = ax2.plot(w_values, X_w_phase, label="Fase")
+ax2.legend()
+ax2.grid()
 ax2.set_title("Gráfico 2")
 
 # Cria um widget do Matplotlib para exibir a figura na interface
