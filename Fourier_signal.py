@@ -33,6 +33,11 @@ except Exception as error:
   print("Você deve definir a função explicitamente!")
   def x_t_function(t):
     return t
+# Geração de valores
+t_values = np.linspace(-2*2*np.pi, 2*2*np.pi, 100)
+
+# Gerar valores para o módulo e fase do sinal
+x_t_function_values = x_t_function(t_values)
 
 
 # Transformada de Fourier
@@ -93,12 +98,13 @@ for i in range(1, 10):
 w_values = np.linspace(-2*2*np.pi, 2*2*np.pi, 100)
 
 # Gerar valores para o módulo e fase do sinal
-X_w_abs = abs_function(w_values)
-X_w_phase = phase_function(w_values)
+X_w_abs_values = abs_function(w_values)
+X_w_phase_values = phase_function(w_values)
 
 # Plotar os gráficos
-# plt.plot(w_values, X_w_abs, label='Módulo')
-# plt.plot(w_values, X_w_phase, label='Fase')
+# plt.plot(t_values, x_t_function_values, label='Função x(t)')
+# plt.plot(w_values, X_w_abs_values, label='Módulo')
+# plt.plot(w_values, X_w_phase_values, label='Fase')
 # plt.xlabel('w')
 # plt.ylabel('X(w)')
 # plt.title('Transformada de Fourier')
